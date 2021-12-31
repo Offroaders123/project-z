@@ -7,6 +7,10 @@ let ch = 0
 let gameFocused = true
 
 adjustCanvas()
+new ResizeObserver(adjustCanvas).observe(c)
+
+// Declare hud variables
+let h = document.getElementById("gameHud");
 
 // Audio function
 function playSFX(src, volume) {
@@ -110,19 +114,16 @@ function calculateCamera() {
 }
 
 function adjustCanvas() {
-    c.width = window.innerWidth
-    c.height = window.innerHeight
-    cw = window.innerWidth / -2
-    ch = window.innerHeight / -2
+    c.width = c.offsetWidth
+    c.height = c.offsetHeight
+    cw = c.width / -2
+    ch = c.height / -2
 }
 
 function hud() {
     // Draws X and Y for camera
     let stuff = particles.length > 0 ? particles[0].xPosition : 0;
-    ctx.fillStyle = "#FF0000";
-    ctx.font = `20px Verdana`;
-    ctx.fillText(`X:${stuff} Y:${Math.sqrt(entityDieSFX)} X2:${1} Y2:${mouse.globalXPosition}`, 0, 20);
-    ctx.fillStyle = "#000000";
+    h.textContent = `X:${stuff} Y:${Math.sqrt(entityDieSFX)} X2:${1} Y2:${mouse.globalXPosition}`;
 }
 
 function drawPlayer() {

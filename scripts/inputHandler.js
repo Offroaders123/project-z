@@ -12,6 +12,7 @@ document.addEventListener('mousedown', function(){ mDown = true; })
 document.addEventListener('mouseup', function(){ mDown = false; })
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
+document.addEventListener('contextmenu', event => event.preventDefault());
 
 let mDown = false;
 let rightPressed = false;
